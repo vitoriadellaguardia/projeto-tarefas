@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tarefas</title>
+    <link rel="stylesheet" href="css/index.css">
+</head>
+
+ <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+
+<body class="bg-black/5">
+    <header class="bg-white shadow-lg flex justify-between items-center px-[60px] py-4">
+        <div class="flex items-center gap-[70px]">
+  <h1 class="font-bold text-[26px]">Tarefas</h1>
+  <input class="bg-black/5 w-[500px] h-[46px] rounded pl-4" type="text" placeholder="Pesquisar">
+        </div>
+        <box-icon type='solid' name='moon'></box-icon>  
+    </header>
+
+    <div class="px-[60px] pt-[60px]">
+ <div class="flex justify-between items-center">
+        <h2 class="font-bold text-[36px] text-black/50">Tarefas</h2>
+        <button class="h-[46px] flex gap-4 items-center bg-black rounded px-4 text-white fill-white uppercase font-bold text-[12px]">
+            <box-icon type='solid' name='plus-circle'></box-icon>
+             Nova tarefa
+        </button>
+    </div>
+
+    <div id="lista-de-tarefas">
+    </div>
+
+   
+</body>
+</html>

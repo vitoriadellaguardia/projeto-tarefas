@@ -1,35 +1,77 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Tarefas</title>
-    <link rel="stylesheet" href="css/index.css">
+    <script>
+      tailwind = {
+        config: {
+          darkMode: 'class', // Esta linha diz ao Tailwind para usar a classe 'dark' para o modo escuro
+          theme: {
+            extend: {},
+          },
+        }
+      }
+    </script>
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
 </head>
 
- <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
-
-<body class="bg-black/5">
-    <header class="bg-white shadow-lg flex justify-between items-center px-[60px] py-4">
+<body class="bg-gray-100 dark:bg-black text-gray-700 dark:text-gray-300">
+    <header id="header" class="bg-white dark:bg-gray-800 shadow-lg flex justify-between items-center px-[60px] py-4 duration-150">
         <div class="flex items-center gap-[70px]">
-  <h1 class="font-bold text-[26px]">Tarefas</h1>
-  <input class="bg-black/5 w-[500px] h-[46px] rounded pl-4" type="text" placeholder="Pesquisar">
+            <h1 class="font-bold text-[26px]">Tarefas</h1>
+            <input class="bg-gray-100 dark:bg-gray-700 w-[500px] h-[46px] rounded pl-4 text-gray-700 dark:text-gray-300" type="text" placeholder="Pesquisar">
         </div>
-        <box-icon type='solid' name='moon'></box-icon>  
+        <box-icon type='solid' name='moon' class="cursor-pointer duration-150 text-gray-700 dark:text-gray-300" onclick="mudarTema()"></box-icon>
     </header>
 
     <div class="px-[60px] pt-[60px]">
- <div class="flex justify-between items-center">
-        <h2 class="font-bold text-[36px] text-black/50">Tarefas</h2>
-        <button class="h-[46px] flex gap-4 items-center bg-black rounded px-4 text-white fill-white uppercase font-bold text-[12px]">
-            <box-icon type='solid' name='plus-circle'></box-icon>
-             Nova tarefa
-        </button>
+        <div class="flex justify-between items-center">
+            <h2 class="font-bold text-[36px] text-gray-700 dark:text-gray-300">Tarefas</h2>
+            <button onclick="abrirGaveta()"
+                class="h-[46px] flex gap-4 items-center bg-black rounded px-4 text-white fill-white uppercase font-bold text-[12px] dark:bg-white dark:text-black">
+                <box-icon type='solid' name='plus-circle' color="white" darkcolor="black"></box-icon>
+                Nova tarefa
+            </button>
+        </div>
+
+        <div id="lista-de-tarefas" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+            </div>
     </div>
 
-    <div id="lista-de-tarefas">
+    <div id="sombra" onclick="fecharGaveta()" class="w-full h-screen bg-black/50 fixed top-0 left-0 duration-150 invisible opacity-0 z-40"></div>
+    
+    <div id="gaveta" class="w-[400px] h-screen bg-white dark:bg-gray-800 p-6 fixed top-0 right-0 duration-150 invisible opacity-0 z-50 transform translate-x-full">
+        <h3 class="flex justify-between items-center text-[20px] font-bold mb-6 text-gray-700 dark:text-gray-300">
+            Cadastrar Tarefa
+            <box-icon name='x' onclick="fecharGaveta()" class="cursor-pointer text-gray-700 dark:text-gray-300"></box-icon>
+        </h3>
+        <form id="form-tarefa">
+            <div class="mb-4">
+                <label for="titulo" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Título:</label>
+                <input type="text" id="titulo" name="titulo"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-white dark:bg-gray-700"
+                    placeholder="Título da Tarefa">
+            </div>
+            <div class="mb-6">
+                <label for="descricao" class="block text-gray-700 dark:text-gray-300 text-sm font-bold mb-2">Descrição:</label>
+                <textarea id="descricao" name="descricao" rows="5"
+                    class="shadow appearance-none border rounded w-full py-2 px-3 text-gray-700 dark:text-gray-300 leading-tight focus:outline-none focus:shadow-outline bg-white dark:bg-gray-700"
+                    placeholder="Descrição da Tarefa"></textarea>
+            </div>
+            <div class="flex items-center justify-between">
+                <button type="submit"
+                    class="bg-black hover:bg-gray-800 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline dark:bg-white dark:text-black">
+                    Criar
+                </button>
+            </div>
+        </form>
     </div>
 
-   
+    <script src="https://unpkg.com/boxicons@2.1.4/dist/boxicons.js"></script>
+    <script src="js/index.js"></script>
 </body>
+
 </html>

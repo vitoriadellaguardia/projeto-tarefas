@@ -3,7 +3,7 @@
   "version": "1.0.0",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "dev": "npx json-server ./api/api.json --watch"
   },
   "repository": {
     "type": "git",
@@ -19,6 +19,7 @@
   "description": "",
   "dependencies": {
     "@tailwindcss/cli": "^4.1.11",
+    "json-server": "^0.17.4",
     "tailwindcss": "^4.1.11"
   }
 }

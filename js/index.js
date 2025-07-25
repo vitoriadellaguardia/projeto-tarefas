@@ -1,9 +1,9 @@
-// Função para alternar entre o tema claro e escuro
+//  alternar entre o tema claro e escuro
 function mudarTema() {
     document.body.classList.toggle('dark');
 }
 
-// Função para abrir a gaveta lateral
+//  abrir a gaveta lateral
 function abrirGaveta() {
     const sombra = document.querySelector("#sombra");
     const gaveta = document.querySelector("#gaveta");
@@ -14,7 +14,7 @@ function abrirGaveta() {
     gaveta.classList.add("opacity-100", "translate-x-0"); // Desliza a gaveta para dentro
 }
 
-// Função para fechar a gaveta lateral
+//  fechar a gaveta lateral
 function fecharGaveta() {
     const sombra = document.querySelector("#sombra");
     const gaveta = document.querySelector("#gaveta");
@@ -25,7 +25,7 @@ function fecharGaveta() {
     gaveta.classList.remove("opacity-100", "translate-x-0");
 }
 
-// Função para buscar as tarefas do JSON Server
+// buscar as tarefas do JSON Server
 function buscarTarefas() {
     fetch("http://localhost:3000/tarefas")
         .then(resposta => {
@@ -41,7 +41,7 @@ function buscarTarefas() {
         .catch(error => console.error("Erro ao buscar tarefas:", error));
 }
 
-// Função para carregar e exibir as tarefas na lista
+// carregar e exibir as tarefas na lista
 function carregarTarefas(tarefas) {
     const listaDeTarefas = document.querySelector("#lista-de-tarefas");
     listaDeTarefas.innerHTML = ''; // Limpa as tarefas existentes antes de carregar as novas
@@ -53,16 +53,20 @@ function carregarTarefas(tarefas) {
 
     tarefas.forEach(tarefa => {
         // Formata a data para o padrão brasileiro
+        // A data do Figma está em DD/MM/AAAA. Usamos toLocaleDateString com pt-BR para isso.
         const formattedDate = new Date(tarefa.data).toLocaleDateString('pt-BR');
+
         listaDeTarefas.innerHTML += `
-            <div class="bg-white dark:bg-gray-700 shadow rounded p-4">
-                <h3 class="font-bold text-gray-700 dark:text-gray-300">${tarefa.titulo}</h3>
-                <p class="text-[14px] text-gray-500 dark:text-gray-400 line-clamp-3 mb-4">${tarefa.descricao}</p>
-                <div class="flex justify-between items-center">
-                    <span class="font-bold text-[10px] text-gray-700 dark:text-gray-300">${formattedDate}</span>
-                    <div class="flex gap-3">
-                        <box-icon name='pencil' data-id="${tarefa.id}" onclick="editarTarefa(this)" class="cursor-pointer text-gray-700 dark:text-gray-300"></box-icon>
-                        <box-icon name='trash' data-id="${tarefa.id}" onclick="excluirTarefa(this)" class="cursor-pointer text-gray-700 dark:text-gray-300"></box-icon>
+            <div class="bg-white dark:bg-gray-700 shadow rounded-lg p-6 flex flex-col justify-between h-[200px] border border-gray-200 dark:border-gray-600">
+                <div>
+                    <h3 class="font-bold text-lg text-gray-800 dark:text-gray-200 mb-2">${tarefa.titulo}</h3>
+                    <p class="text-sm text-gray-600 dark:text-gray-400 line-clamp-3">${tarefa.descricao}</p>
+                </div>
+                <div class="flex justify-between items-center mt-4">
+                    <span class="font-semibold text-xs text-gray-500 dark:text-gray-300">${formattedDate}</span>
+                    <div class="flex gap-2">
+                        <box-icon name='pencil' type='solid' data-id="${tarefa.id}" onclick="editarTarefa(this)" class="cursor-pointer text-gray-500 dark:text-gray-300 w-5 h-5"></box-icon>
+                        <box-icon name='trash' type='solid' data-id="${tarefa.id}" onclick="excluirTarefa(this)" class="cursor-pointer text-gray-500 dark:text-gray-300 w-5 h-5"></box-icon>
                     </div>
                 </div>
             </div>
@@ -70,7 +74,7 @@ function carregarTarefas(tarefas) {
     });
 }
 
-// Função para cadastrar uma nova tarefa
+// cadastrar uma nova tarefa
 function cadastrarTarefa(event) {
     event.preventDefault(); // Previne o envio padrão do formulário
 
